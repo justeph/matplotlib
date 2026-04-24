@@ -127,6 +127,8 @@ jobs:
         include:
           - os: ubuntu-latest
             cibw_archs: "x86_64"
+          - os: ubuntu-latest
+            cibw_archs: "riscv64"
           - os: ubuntu-24.04-arm
             cibw_archs: "aarch64"
           - os: windows-latest
@@ -144,6 +146,10 @@ jobs:
         with:
           name: cibw-sdist
           path: dist/
+
+      - name: Set up QEMU
+        if: matrix.cibw_archs == 'riscv64'
+        uses: docker/setup-qemu-action@v3
 
       - name: Purge Strawberry Perl
         if: startsWith(matrix.os, 'windows-')
