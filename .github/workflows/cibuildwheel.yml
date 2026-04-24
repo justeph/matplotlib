@@ -22,18 +22,18 @@ permissions: {}
 
 jobs:
   build_sdist:
-    if: >-
-      github.repository == 'matplotlib/matplotlib' && (
-        github.event_name == 'push' ||
-        github.event_name == 'pull_request' && (
-          (
-            github.event.action == 'labeled' &&
-            github.event.label.name == 'CI: Run cibuildwheel'
-          ) ||
-          contains(github.event.pull_request.labels.*.name,
-                   'CI: Run cibuildwheel')
-        )
-      )
+    #if: >-
+    #  github.repository == 'matplotlib/matplotlib' && (
+    #    github.event_name == 'push' ||
+    #    github.event_name == 'pull_request' && (
+    #      (
+    #        github.event.action == 'labeled' &&
+    #        github.event.label.name == 'CI: Run cibuildwheel'
+    #      ) ||
+    #      contains(github.event.pull_request.labels.*.name,
+    #               'CI: Run cibuildwheel')
+    #    )
+    #  )
     name: Build sdist
     runs-on: ubuntu-latest
     permissions:
@@ -80,18 +80,18 @@ jobs:
           if-no-files-found: error
 
   build_wheels:
-    if: >-
-      github.repository == 'matplotlib/matplotlib' && (
-        github.event_name == 'push' ||
-        github.event_name == 'pull_request' && (
-          (
-            github.event.action == 'labeled' &&
-            github.event.label.name == 'CI: Run cibuildwheel'
-          ) ||
-          contains(github.event.pull_request.labels.*.name,
-                   'CI: Run cibuildwheel')
-        )
-      )
+    #if: >-
+    #  github.repository == 'matplotlib/matplotlib' && (
+    #    github.event_name == 'push' ||
+    #    github.event_name == 'pull_request' && (
+    #      (
+    #        github.event.action == 'labeled' &&
+    #        github.event.label.name == 'CI: Run cibuildwheel'
+    #      ) ||
+    #      contains(github.event.pull_request.labels.*.name,
+    #               'CI: Run cibuildwheel')
+    #    )
+    #  )
     needs: build_sdist
     name: Build wheels on ${{ matrix.os }} for ${{ matrix.cibw_archs }}
     permissions:
